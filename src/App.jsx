@@ -14,7 +14,6 @@ import OrganizationCenter from './components/OrganizationCenter';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import Documentation from './components/Documentation';
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -96,7 +95,6 @@ function App() {
             <Route path="/awards" element={<Awards />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/docs" element={<Documentation />} />
           </Routes>
         </main>
         <Footer />
