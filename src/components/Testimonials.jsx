@@ -46,7 +46,7 @@ const Testimonials = () => {
         </div>
 
         <div className="relative max-w-4xl mx-auto">
-          <div className="bg-white bg-opacity-10 rounded-2xl p-8 backdrop-blur-sm">
+          <div className="bg-black/70 bg-opacity-10 rounded-2xl p-8 backdrop-blur-sm">
             <div className="flex justify-center mb-4">
               {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
                 <FaStar key={i} className="text-yellow-400 text-xl" />
