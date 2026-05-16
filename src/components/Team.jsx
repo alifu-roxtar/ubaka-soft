@@ -1,64 +1,72 @@
 // components/Team.jsx - Dark Developer Theme
-import React, { useState } from 'react';
+import React from 'react';
 import { FaLinkedin, FaTwitter, FaEnvelope, FaGithub, FaUsers, FaTerminal, FaCodeBranch } from 'react-icons/fa';
 
-const Team = () => {
-  const [selectedMember, setSelectedMember] = useState(null);
+const avatarColors = [
+  { bg: '#3C3489', text: '#CECBF6' },
+  { bg: '#085041', text: '#9FE1CB' },
+  { bg: '#0C447C', text: '#B5D4F4' },
+  { bg: '#72243E', text: '#F4C0D1' },
+  { bg: '#633806', text: '#FAC775' },
+  { bg: '#712B13', text: '#F5C4B3' },
+];
 
+const getInitials = (name) =>
+  name
+    .split(' ')
+    .map((n) => n[0])
+    .join('')
+    .toUpperCase();
+
+const Team = () => {
   const team = [
     {
       id: 1,
-      name: 'John Ubaka',
+      name: 'IRASUBIZA Sandrine',
       role: 'CEO & Founder',
       bio: 'Visionary leader with 15+ years in software engineering and digital transformation across Africa.',
       expertise: ['Leadership', 'Strategy', 'Cloud Architecture'],
-      image: 'https://via.placeholder.com/300x300',
-      social: { linkedin: '#', twitter: '#', email: 'john@ubakasoft.com', github: '#' }
+      social: { linkedin: '#', twitter: '#', email: 'sandrine@ubakasoft.com', github: '#' },
     },
     {
       id: 2,
-      name: 'Sarah Uwase',
+      name: 'UWITONZE Trinita',
       role: 'Chief Technology Officer',
       bio: 'Expert in scalable systems and AI integration with a passion for innovative solutions.',
       expertise: ['AI/ML', 'System Architecture', 'DevOps'],
-      image: 'https://via.placeholder.com/300x300',
-      social: { linkedin: '#', twitter: '#', email: 'sarah@ubakasoft.com', github: '#' }
+      social: { linkedin: '#', twitter: '#', email: 'trinita@ubakasoft.com', github: '#' },
     },
     {
       id: 3,
-      name: 'David Kagame',
+      name: 'UMURERWA Doreen',
       role: 'Lead Software Engineer',
       bio: 'Full-stack specialist delivering high-performance applications for enterprise clients.',
       expertise: ['React', 'Node.js', 'Cloud'],
-      image: 'https://via.placeholder.com/300x300',
-      social: { linkedin: '#', twitter: '#', email: 'david@ubakasoft.com', github: '#' }
+      social: { linkedin: '#', twitter: '#', email: 'doreen@ubakasoft.com', github: '#' },
     },
     {
       id: 4,
-      name: 'Grace Mukamana',
+      name: 'MUZIRANENGE Anonciatha',
       role: 'Product Design Lead',
       bio: 'Creating intuitive and accessible user experiences that delight customers.',
       expertise: ['UI/UX', 'Design Systems', 'Research'],
-      image: 'https://via.placeholder.com/300x300',
-      social: { linkedin: '#', twitter: '#', email: 'grace@ubakasoft.com', github: '#' }
+      social: { linkedin: '#', twitter: '#', email: 'anonciatha@ubakasoft.com', github: '#' },
     },
     {
       id: 5,
-      name: 'Eric Niyomugabo',
+      name: 'UKWIRORA Claudine',
       role: 'DevOps Engineer',
       bio: 'Automating infrastructure and ensuring 99.99% uptime for all client platforms.',
       expertise: ['AWS', 'Kubernetes', 'CI/CD'],
-      image: 'https://via.placeholder.com/300x300',
-      social: { linkedin: '#', twitter: '#', email: 'eric@ubakasoft.com', github: '#' }
+      social: { linkedin: '#', twitter: '#', email: 'claudine@ubakasoft.com', github: '#' },
     },
     {
       id: 6,
-      name: 'Diane Uwimana',
+      name: 'NIYITEGEKA Dady Rene',
       role: 'Project Manager',
       bio: 'Agile expert ensuring projects are delivered on time and within budget.',
       expertise: ['Agile', 'Scrum', 'Client Relations'],
-      image: 'https://via.placeholder.com/300x300',
-      social: { linkedin: '#', twitter: '#', email: 'diane@ubakasoft.com', github: '#' }
+      social: { linkedin: '#', twitter: '#', email: 'dady@ubakasoft.com', github: '#' },
     },
   ];
 
@@ -101,70 +109,69 @@ const Team = () => {
       {/* Team Grid */}
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {team.map((member) => (
-            <div 
-              key={member.id} 
-              className="bg-gray-800 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-2"
-              onMouseEnter={() => setSelectedMember(member.id)}
-              onMouseLeave={() => setSelectedMember(null)}
-            >
-              <div className="relative h-64 overflow-hidden">
-                <img 
-                  src={member.image} 
-                  alt={member.name} 
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                />
-                <div className={`absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent flex items-end transition-opacity duration-300 ${
-                  selectedMember === member.id ? 'opacity-100' : 'opacity-0'
-                }`}>
-                  <div className="p-4 w-full">
-                    <div className="flex justify-center space-x-3">
-                      <a href={member.social.linkedin} className="bg-gray-800 p-2 rounded-lg hover:bg-blue-600 hover:text-white transition">
-                        <FaLinkedin />
-                      </a>
-                      <a href={member.social.twitter} className="bg-gray-800 p-2 rounded-lg hover:bg-blue-400 hover:text-white transition">
-                        <FaTwitter />
-                      </a>
-                      <a href={`mailto:${member.social.email}`} className="bg-gray-800 p-2 rounded-lg hover:bg-red-600 hover:text-white transition">
-                        <FaEnvelope />
-                      </a>
-                      <a href={member.social.github} className="bg-gray-800 p-2 rounded-lg hover:bg-gray-600 hover:text-white transition">
-                        <FaGithub />
-                      </a>
-                    </div>
+          {team.map((member, index) => {
+            const color = avatarColors[index % avatarColors.length];
+            return (
+              <div
+                key={member.id}
+                className="bg-gray-800 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-2"
+              >
+                {/* Avatar Section */}
+                <div className="flex flex-col items-center pt-8 pb-4">
+                  <div
+                    className="w-24 h-24 rounded-full flex items-center justify-center text-3xl font-bold font-mono mb-3"
+                    style={{ backgroundColor: color.bg, color: color.text }}
+                  >
+                    {getInitials(member.name)}
+                  </div>
+                  {/* Status Badge */}
+                  <div className="flex items-center space-x-1 bg-green-500/90 px-2 py-1 rounded-full text-xs">
+                    <div className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></div>
+                    <span className="text-white font-mono">active</span>
                   </div>
                 </div>
-                {/* Status Badge */}
-                <div className="absolute top-4 right-4 flex items-center space-x-1 bg-green-500/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs">
-                  <div className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></div>
-                  <span className="text-white font-mono">active</span>
+
+                <div className="p-6 pt-2">
+                  <h3 className="text-xl font-bold text-white mb-1 font-mono text-center">{member.name}</h3>
+                  <p className="text-blue-400 font-semibold mb-3 text-sm text-center">{member.role}</p>
+                  <p className="text-gray-400 text-sm mb-4">{member.bio}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {member.expertise.map((skill, idx) => (
+                      <span key={idx} className="bg-gray-700 text-gray-300 text-xs px-2 py-1 rounded font-mono">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Social Links */}
+                  <div className="flex justify-center space-x-3 mt-4">
+                    <a href={member.social.linkedin} className="bg-gray-700 p-2 rounded-lg hover:bg-blue-600 hover:text-white transition">
+                      <FaLinkedin />
+                    </a>
+                    <a href={member.social.twitter} className="bg-gray-700 p-2 rounded-lg hover:bg-blue-400 hover:text-white transition">
+                      <FaTwitter />
+                    </a>
+                    <a href={`mailto:${member.social.email}`} className="bg-gray-700 p-2 rounded-lg hover:bg-red-600 hover:text-white transition">
+                      <FaEnvelope />
+                    </a>
+                    <a href={member.social.github} className="bg-gray-700 p-2 rounded-lg hover:bg-gray-600 hover:text-white transition">
+                      <FaGithub />
+                    </a>
+                  </div>
                 </div>
-              </div>
-              
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-1 font-mono">{member.name}</h3>
-                <p className="text-blue-400 font-semibold mb-3 text-sm">{member.role}</p>
-                <p className="text-gray-400 text-sm mb-4">{member.bio}</p>
-                <div className="flex flex-wrap gap-2">
-                  {member.expertise.map((skill, idx) => (
-                    <span key={idx} className="bg-gray-700 text-gray-300 text-xs px-2 py-1 rounded font-mono">
-                      {skill}
+
+                {/* Terminal footer */}
+                <div className="bg-gray-900/50 px-6 py-3 border-t border-gray-700">
+                  <div className="flex items-center justify-between text-xs font-mono">
+                    <span className="text-gray-500">contributions: 1,284</span>
+                    <span className="text-gray-500">
+                      <FaCodeBranch className="inline mr-1" /> main
                     </span>
-                  ))}
+                  </div>
                 </div>
               </div>
-              
-              {/* Terminal footer */}
-              <div className="bg-gray-900/50 px-6 py-3 border-t border-gray-700">
-                <div className="flex items-center justify-between text-xs font-mono">
-                  <span className="text-gray-500">contributions: 1,284</span>
-                  <span className="text-gray-500">
-                    <FaCodeBranch className="inline mr-1" /> main
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Join Team CTA */}
