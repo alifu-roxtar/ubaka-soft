@@ -1,15 +1,4 @@
-# robots.txt for ubaka-soft.vercel.app
 User-agent: *
 Allow: /
-Disallow: /api/
-Disallow: /admin/
-Disallow: /private/
 
-# Sitemap location
 Sitemap: https://ubaka-soft.vercel.app/sitemap.xml
-
-# Crawl delay
-Crawl-delay: 1
-
-# Host
-Host: https://ubaka-soft.vercel.app
